@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using RoboChat.Contracts;
 using RobotNET.API;
 
 namespace RoboChat.Model

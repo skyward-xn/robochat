@@ -8,6 +8,9 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RoboChat.Model;
+using RoboChat.Contracts;
+using RoboChat.DataStructures;
+using RoboChat.CustomEventArgs;
 
 namespace RoboChat.ViewModels
 {

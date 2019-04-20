@@ -1,12 +1,12 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:RoboChat" x:Class="RoboChat.RosterView"
-        xmlns:conv="clr-namespace:RoboChat.Converters"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        x:Name="RosterViewElement"        
-        Title="{Binding SettingsInstance.Name}" Height="383.266" Width="343.367" Icon="/RoboChat;component/RoboChat32.ico" Closing="Window_Closing" SourceInitialized="ContactsViewElement_SourceInitialized">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:RoboChat" x:Class="RoboChat.RosterView"
+    xmlns:conv="clr-namespace:RoboChat.Converters"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    x:Name="RosterViewElement"        
+    Title="{Binding SettingsInstance.Name}" Height="383.266" Width="343.367" Icon="/RoboChat;component/RoboChat32.ico" Closing="Window_Closing" SourceInitialized="ContactsViewElement_SourceInitialized">
     <Window.InputBindings>
         <KeyBinding Command="{Binding Hide}" CommandParameter="{Binding ElementName=RosterViewElement}" Key="Escape"/>
     </Window.InputBindings>

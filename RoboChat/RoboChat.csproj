@@ -152,9 +152,17 @@
     <Compile Include="Converters\BoolToModifierKeysConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\GenericBoolToValueConverter.cs" />
-    <Compile Include="Classes\DelegateCommand.cs" />
-    <Compile Include="Classes\HelperClasses.cs" />
+    <Compile Include="DelegateCommand.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
+    <Compile Include="CustomEventArgs\StatisticsEventArgs.cs" />
+    <Compile Include="CustomEventArgs\ContactsUpdatedEventArgs.cs" />
+    <Compile Include="CustomEventArgs\StatusEventArgs.cs" />
+    <Compile Include="DataStructures\UpdaterState.cs" />
+    <Compile Include="Enums\Tags.cs" />
+    <Compile Include="Enums\SendKeyTypes.cs" />
+    <Compile Include="Enums\Directions.cs" />
+    <Compile Include="Enums\ErrorHandlingLevels.cs" />
+    <Compile Include="CustomEventArgs\MessageEventArgs.cs" />
     <Compile Include="Static\History.cs" />
     <Compile Include="Interfaces\IRoster.Model.cs" />
     <Compile Include="Models\Roster.Model.cs" />
@@ -171,7 +179,7 @@
     </Compile>
     <Compile Include="Models\ConnectionReceive.cs" />
     <Compile Include="Static\Tray.cs" />
-    <Compile Include="Classes\Contact.cs" />
+    <Compile Include="Contracts\Contact.cs" />
     <Compile Include="Behaviors\MessagesBehavior.cs" />
     <Compile Include="Models\ConnectionSend.cs" />
     <Compile Include="Views\User.View.xaml.cs">
@@ -181,7 +189,7 @@
       <DependentUpon>Roster.View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Static\Helpers.cs" />
-    <Compile Include="Classes\Message.cs" />
+    <Compile Include="Contracts\Message.cs" />
     <Compile Include="Static\Settings.cs" />
     <Compile Include="ViewModels\Chat.ViewModel.cs" />
     <Compile Include="Views\BasicConfiguration.View.xaml.cs">

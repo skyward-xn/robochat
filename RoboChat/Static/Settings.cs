@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RoboChat.DataStructures;
+using RoboChat.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -255,20 +257,20 @@ namespace RoboChat
             }
         }
 
-        private static List<WindowSettings> _windowSettings;
-        public static List<WindowSettings> WindowSettings
+        private static Dictionary<string, Rect> _windowSettings;
+        public static Dictionary<string, Rect> WindowSettings
         {
             get
             {
                 if (_windowSettings == null)
                 {
-                    _windowSettings = new List<WindowSettings>();
+                    _windowSettings = new Dictionary<string, Rect>();
 
                     string path = Path.Combine(Directory, WINDOWS_FILE_PATH);
                     if (File.Exists(path))
                     {
                         string xml = File.ReadAllText(path);
-                        _windowSettings = Helpers.DeserializeFromXml<List<WindowSettings>>(xml);
+                        _windowSettings = Helpers.DeserializeFromXml<Dictionary<string, Rect>>(xml);
                     }
                 }
 
@@ -660,17 +662,7 @@ namespace RoboChat
 
         public static void SaveWindowSizeAndPosition(Window window)
         {
-            var settings = WindowSettings.FirstOrDefault(p => p.Name == window.GetType().ToString());
-            if (settings != null)
-            {
-                WindowSettings.Remove(settings);
-            }
-
-            WindowSettings.Add(new WindowSettings
-            {
-                Name = window.GetType().ToString(),
-                Rect = new Rect(window.Left, window.Top, window.Width, window.Height)
-            });
+            WindowSettings[window.GetType().ToString()] = new Rect(window.Left, window.Top, window.Width, window.Height);
 
             lock (WindowSettings)
             {
@@ -682,15 +674,19 @@ namespace RoboChat
 
         public static void LoadWindowSizeAndPosition(Window window)
         {
-            var settings = WindowSettings.FirstOrDefault(p => p.Name == window.GetType().ToString());
-            if (settings != null &&
-                settings.Rect.Left < SystemParameters.PrimaryScreenWidth &&
-                settings.Rect.Top < SystemParameters.PrimaryScreenHeight)
+            if (!WindowSettings.ContainsKey(window.GetType().ToString()))
+                return;
+
+            var settings = WindowSettings[window.GetType().ToString()];
+            if (
+                settings.Left < SystemParameters.PrimaryScreenWidth &&
+                settings.Top < SystemParameters.PrimaryScreenHeight
+            )
             {
-                window.Left = settings.Rect.Left;
-                window.Top = settings.Rect.Top;
-                window.Width = settings.Rect.Width;
-                window.Height = settings.Rect.Height;
+                window.Left = settings.Left;
+                window.Top = settings.Top;
+                window.Width = settings.Width;
+                window.Height = settings.Height;
             }
         }
 

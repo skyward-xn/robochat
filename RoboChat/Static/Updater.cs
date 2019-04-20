@@ -1,5 +1,7 @@
 ﻿using NAppUpdate.Framework;
 using NAppUpdate.Framework.Sources;
+using RoboChat.DataStructures;
+using RoboChat.Enums;
 using System;
 using System.IO;
 using System.Threading;

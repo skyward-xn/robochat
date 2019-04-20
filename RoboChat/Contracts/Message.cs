@@ -1,7 +1,8 @@
-﻿using System;
+﻿using RoboChat.Enums;
+using System;
 using System.IO;
 
-namespace RoboChat
+namespace RoboChat.Contracts
 {
     [Serializable]
     public class Message

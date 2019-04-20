@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading;
+using RoboChat.CustomEventArgs;
+using RoboChat.Enums;
 using RobotNET.API;
 
 namespace RoboChat.Model

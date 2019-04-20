@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
-namespace RoboChat
+namespace RoboChat.Contracts
 {
     [Serializable]
     public class Contact : INotifyPropertyChanged, IDisposable

@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Windows.Media.Imaging;
 using System.Web;
 using RoboChat.Behaviors;
+using RoboChat.Enums;
 
 namespace RoboChat.Model
 {

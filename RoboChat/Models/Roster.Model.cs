@@ -1,4 +1,7 @@
-﻿using System;
+﻿using RoboChat.Contracts;
+using RoboChat.CustomEventArgs;
+using RoboChat.Enums;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -12,7 +15,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Forms;
 
 namespace RoboChat.Model
 {
@@ -474,7 +476,7 @@ namespace RoboChat.Model
             if (e.IsOnline)
             {
                 if (Settings.Instance.ShowSystemPopups)
-                    AppTray.Message(ToolTipIcon.Warning, "Connection established.");
+                    AppTray.Message(System.Windows.Forms.ToolTipIcon.Warning, "Connection established.");
 
                 foreach (var contact in Contacts)
                 {
@@ -484,7 +486,7 @@ namespace RoboChat.Model
             else
             {
                 if (Settings.Instance.ShowSystemPopups)
-                    AppTray.Message(ToolTipIcon.Warning, "Connection lost.");
+                    AppTray.Message(System.Windows.Forms.ToolTipIcon.Warning, "Connection lost.");
 
                 foreach (var contact in Contacts)
                 {

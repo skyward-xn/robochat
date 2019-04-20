@@ -1,4 +1,5 @@
-﻿using RoboChat.ViewModels;
+﻿using RoboChat.Contracts;
+using RoboChat.ViewModels;
 using System.Windows;
 
 namespace RoboChat

@@ -1,4 +1,6 @@
-﻿using RobotNET.API;
+﻿using RoboChat.Contracts;
+using RoboChat.CustomEventArgs;
+using RobotNET.API;
 using System;
 using System.Collections.Generic;
 using System.IO;

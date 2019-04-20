@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RoboChat.Contracts;
+using RoboChat.Enums;
+using System;
 using System.IO;
 using System.Linq;
 

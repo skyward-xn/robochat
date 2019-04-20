@@ -1,10 +1,10 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:RoboChat" x:Class="RoboChat.AboutView"
-        xmlns:behave="clr-namespace:RoboChat.Behaviors"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        Title="About RoboChat" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Icon="/RoboChat;component/RoboChat32.ico">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:RoboChat" x:Class="RoboChat.AboutView"
+    xmlns:behave="clr-namespace:RoboChat.Behaviors"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    Title="About RoboChat" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Icon="/RoboChat;component/RoboChat32.ico">
     <DockPanel Margin="10">
         <Image Stretch="None" DockPanel.Dock="Left" Source="/Resources;component/images/RoboChat256.ico" Margin="0,0,10,0"/>
         <TextBlock TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" LineHeight="24">

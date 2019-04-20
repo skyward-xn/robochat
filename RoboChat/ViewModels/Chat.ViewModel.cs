@@ -10,10 +10,11 @@ using System.Windows.Documents;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Media.Imaging;
-using System.Windows.Forms;
 using System.Windows.Markup;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using RoboChat.Enums;
+using RoboChat.Contracts;
 
 namespace RoboChat.ViewModels
 {
@@ -364,12 +365,12 @@ namespace RoboChat.ViewModels
         {
             try
             {
-                if (System.Windows.Clipboard.ContainsImage())
+                if (Clipboard.ContainsImage())
                 {
                     string filePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".jpg");
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                        var image = System.Windows.Clipboard.GetImage();
+                        var image = Clipboard.GetImage();
                         var encoder = new JpegBitmapEncoder();
                         encoder.Frames.Add(BitmapFrame.Create(image));
                         encoder.Save(fileStream);
@@ -377,9 +378,9 @@ namespace RoboChat.ViewModels
 
                     SendFile(filePath);
                 }
-                else if (System.Windows.Clipboard.ContainsFileDropList())
+                else if (Clipboard.ContainsFileDropList())
                 {
-                    var files = System.Windows.Clipboard.GetFileDropList();
+                    var files = Clipboard.GetFileDropList();
 
                     foreach (var file in files)
                     {
@@ -389,9 +390,9 @@ namespace RoboChat.ViewModels
                         Thread.Sleep(25);
                     }
                 }
-                else if (System.Windows.Clipboard.ContainsText())
+                else if (Clipboard.ContainsText())
                 {
-                    string text = System.Windows.Clipboard.GetText();
+                    string text = Clipboard.GetText();
                     AppendText(text);
                 }
             }
@@ -507,9 +508,9 @@ namespace RoboChat.ViewModels
         {
             try
             {
-                using (var openFileDialog = new OpenFileDialog())
+                using (var openFileDialog = new System.Windows.Forms.OpenFileDialog())
                 {
-                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         SendFile(openFileDialog.FileName);
                     }
