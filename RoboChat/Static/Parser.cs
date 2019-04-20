@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Windows.Media.Imaging;
 using System.Web;
+using RoboChat.Behaviors;
 
 namespace RoboChat.Model
 {

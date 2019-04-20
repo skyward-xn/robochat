@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interactivity;
 
-namespace RoboChat
+namespace RoboChat.Behaviors
 {
     public class InputBindingsBehavior : Behavior<UIElement>
     {

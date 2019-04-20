@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Interactivity;
 
-namespace RoboChat
+namespace RoboChat.Behaviors
 {
     public class PrintBehavior : Behavior<FlowDocumentScrollViewer>
     {

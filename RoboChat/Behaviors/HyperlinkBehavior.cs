@@ -6,7 +6,7 @@ using System.Web;
 using System.Windows.Documents;
 using System.Windows.Interactivity;
 
-namespace RoboChat
+namespace RoboChat.Behaviors
 {
     public class HyperlinkBehavior : Behavior<Hyperlink>
     {

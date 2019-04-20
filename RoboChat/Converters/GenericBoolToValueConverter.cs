@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Data;
-using System.Windows.Input;
 
-namespace RoboChat
+namespace RoboChat.Converters
 {
-    public class BoolToValueConverter<T> : IValueConverter
+    public class GenericBoolToValueConverter<T> : IValueConverter
     {
         public T FalseValue { get; set; }
         public T TrueValue { get; set; }
@@ -23,8 +21,4 @@ namespace RoboChat
             return value != null ? value.Equals(TrueValue) : false;
         }
     }
-
-    public class BoolToStringConverter : BoolToValueConverter<String> { }
-    public class BoolToVisibilityConverter : BoolToValueConverter<Visibility> { }
-    public class BoolToModifierKeysConverter : BoolToValueConverter<ModifierKeys> { }
 }

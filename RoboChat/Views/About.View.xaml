@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:RoboChat" x:Class="RoboChat.AboutView"
+        xmlns:behave="clr-namespace:RoboChat.Behaviors"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="About RoboChat" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Icon="/RoboChat;component/RoboChat32.ico">
     <DockPanel Margin="10">
@@ -12,7 +13,7 @@
             <Run Text="Powered by" />
             <Hyperlink NavigateUri="http://robotnet.org">
                 <i:Interaction.Behaviors>
-                    <local:HyperlinkBehavior/>
+                    <behave:HyperlinkBehavior/>
                 </i:Interaction.Behaviors>
                 RobotNET
             </Hyperlink>
@@ -21,7 +22,7 @@
                 © 2011-2017, 
                 <Hyperlink NavigateUri="http://itgems.org">
                     <i:Interaction.Behaviors>
-                        <local:HyperlinkBehavior/>
+                        <behave:HyperlinkBehavior/>
                     </i:Interaction.Behaviors>
                     ITGems
                 </Hyperlink>
@@ -30,7 +31,7 @@
             <Span>Visit us at 
                 <Hyperlink NavigateUri="http://chat.robotnet.org">
                     <i:Interaction.Behaviors>
-                        <local:HyperlinkBehavior/>
+                        <behave:HyperlinkBehavior/>
                     </i:Interaction.Behaviors>
                     chat.robotnet.org
                 </Hyperlink>

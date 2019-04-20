@@ -64,6 +64,9 @@
     <Reference Include="factory.net35">
       <HintPath>..\factory.net35.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
       <Private>True</Private>
@@ -119,9 +122,8 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\System.Windows.Interactivity.dll</HintPath>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
@@ -143,19 +145,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviours\PrintBehavior.cs" />
-    <Compile Include="Behaviours\FindBehavior.cs" />
-    <Compile Include="Behaviours\SelectionBehavior.cs" />
-    <Compile Include="Behaviours\InputBindingsBehavior.cs" />
-    <Compile Include="Classes\BoolToValueConverter.cs" />
+    <Compile Include="Behaviors\PrintBehavior.cs" />
+    <Compile Include="Behaviors\FindBehavior.cs" />
+    <Compile Include="Behaviors\SelectionBehavior.cs" />
+    <Compile Include="Behaviors\InputBindingsBehavior.cs" />
+    <Compile Include="Converters\BoolToModifierKeysConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\GenericBoolToValueConverter.cs" />
     <Compile Include="Classes\DelegateCommand.cs" />
     <Compile Include="Classes\HelperClasses.cs" />
+    <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="Static\History.cs" />
     <Compile Include="Interfaces\IRoster.Model.cs" />
     <Compile Include="Models\Roster.Model.cs" />
     <Compile Include="Models\ConnectionThread.cs" />
-    <Compile Include="Behaviours\ScrollBehavior.cs" />
-    <Compile Include="Behaviours\HyperlinkBehavior.cs" />
+    <Compile Include="Behaviors\ScrollBehavior.cs" />
+    <Compile Include="Behaviors\HyperlinkBehavior.cs" />
     <Compile Include="Static\Parser.cs" />
     <Compile Include="Static\Updater.cs" />
     <Compile Include="ViewModels\User.ViewModel.cs" />
@@ -167,7 +172,7 @@
     <Compile Include="Models\ConnectionReceive.cs" />
     <Compile Include="Static\Tray.cs" />
     <Compile Include="Classes\Contact.cs" />
-    <Compile Include="Behaviours\MessagesBehavior.cs" />
+    <Compile Include="Behaviors\MessagesBehavior.cs" />
     <Compile Include="Models\ConnectionSend.cs" />
     <Compile Include="Views\User.View.xaml.cs">
       <DependentUpon>User.View.xaml</DependentUpon>
