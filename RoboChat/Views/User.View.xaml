@@ -1,0 +1,49 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:RoboChat" x:Class="RoboChat.UserView"
+        x:Name="ViewWindow"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        Title="User" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Icon="/RoboChat;component/RoboChat32.ico" Topmost="True" MinWidth="300">
+    <DockPanel Margin="10">
+        <DockPanel DockPanel.Dock="Top">
+            <Image DockPanel.Dock="Left" Source="/Resources;component/images/security.png" Margin="0,0,10,0" VerticalAlignment="Top" Stretch="None" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition MinHeight="36" />
+                    <RowDefinition MinHeight="36" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="300" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="User" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Require Encryption" Margin="0,8" VerticalAlignment="Top" />
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Private Key" Margin="0,8" VerticalAlignment="Top" />
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Public Key" Margin="0,8" VerticalAlignment="Top" />
+                <TextBox Grid.Column="2" Grid.Row="0" Height="22" VerticalContentAlignment="Center" 
+                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         ToolTip="A user name to be shown in contact lists and in a chat history"/>
+                <CheckBox Grid.Column="2" Grid.Row="1" IsChecked="{Binding RequireEncryption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="2" Grid.Row="2" Margin="0,7" VerticalContentAlignment="Center" IsReadOnly="True"
+                         Text="{Binding PrivateKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         ToolTip="A private key for decoding incoming messages" MaxLines="4" TextWrapping="Wrap" />
+                <TextBox Grid.Column="2" Grid.Row="3" Margin="0,7" VerticalContentAlignment="Center" IsReadOnly="True"
+                         Text="{Binding PublicKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         ToolTip="A public key for encoding outgoing messages and for user identification" MaxLines="4" TextWrapping="Wrap" />
+            </Grid>
+        </DockPanel>
+        <DockPanel>
+            <Separator DockPanel.Dock="Top" Margin="0,0,0,6" />
+            <Button Height="30" Padding="20,0" Command="{Binding Cancel}" CommandParameter="{Binding ElementName=ViewWindow}"
+                        VerticalAlignment="Bottom" Background="{x:Null}" FontWeight="Bold" Content="Cancel" DockPanel.Dock="Right" />
+            <Button Height="30" Padding="20,0" Margin="0,0,10,0" Command="{Binding OK}" CommandParameter="{Binding ElementName=ViewWindow}" 
+                        VerticalAlignment="Bottom" Background="{x:Null}" FontWeight="Bold" Content="OK" DockPanel.Dock="Right" />
+            <Button Height="30" Padding="20,0" Margin="0,0,10,0" Command="{Binding Generate}" 
+                    VerticalAlignment="Bottom" Background="{x:Null}" FontWeight="Bold" Content="Generate Key Pair" HorizontalAlignment="Left" />
+        </DockPanel>
+    </DockPanel>
+</Window>

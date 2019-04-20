@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66BF121E-8476-4DDC-BF7D-0F4F3E8F7596}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Resources</RootNamespace>
+    <AssemblyName>Resources</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\RoboChat256.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\italic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\quote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\smile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\spinner.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\underline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\c.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\d.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\e.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\f.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\i.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\j.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\k.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\m.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\q.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\u.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\v.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\y.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="letters\z.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\security.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\signal0.png" />
+    <Resource Include="images\signal3.png" />
+    <Resource Include="images\signal4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\signal1.png" />
+    <Resource Include="images\signal2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\style.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\lock.png" />
+    <Resource Include="images\lock_disabled.png" />
+    <Resource Include="images\lock_small.png" />
+    <Resource Include="images\unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\file_received.png" />
+    <Resource Include="images\file_sent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\degrees0.png" />
+    <Resource Include="images\degrees120.png" />
+    <Resource Include="images\degrees150.png" />
+    <Resource Include="images\degrees180.png" />
+    <Resource Include="images\degrees210.png" />
+    <Resource Include="images\degrees240.png" />
+    <Resource Include="images\degrees270.png" />
+    <Resource Include="images\degrees30.png" />
+    <Resource Include="images\degrees300.png" />
+    <Resource Include="images\degrees330.png" />
+    <Resource Include="images\degrees360.png" />
+    <Resource Include="images\degrees60.png" />
+    <Resource Include="images\degrees90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\paste.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

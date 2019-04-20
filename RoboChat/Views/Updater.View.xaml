@@ -1,0 +1,25 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:RoboChat" x:Class="RoboChat.UpdaterView"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        Title="Check Updates" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Icon="/RoboChat;component/RoboChat32.ico" Closing="Window_Closing" Topmost="True" MinWidth="250">
+    <DockPanel Margin="10">
+        <DockPanel DockPanel.Dock="Top" Margin="0,0,0,6">
+            <Image DockPanel.Dock="Left" Source="/Resources;component/images/config.png" Margin="0,0,10,0" VerticalAlignment="Top" Stretch="None" />
+            <TextBlock x:Name="MessageTextBlock" TextAlignment="Center" VerticalAlignment="Center">
+                <Run>A new version is available.</Run>
+                <LineBreak />
+                <Run>Would you like to update?</Run>
+            </TextBlock>
+        </DockPanel>
+        <DockPanel>
+            <ProgressBar x:Name="UpdateProgressBar" DockPanel.Dock="Top" Height="16" Visibility="Collapsed"  />
+            <Separator x:Name="SeparatorBlock" DockPanel.Dock="Top" Margin="0,0,0,6" />
+            <StackPanel Orientation="Horizontal" x:Name="ButtonsBlock" HorizontalAlignment="Right">
+                <Button Height="30" Padding="20,0" Margin="10,0,0,0" Background="{x:Null}" Click="UpdateButton_Click" FontWeight="Bold" Content="Update" />
+                <Button Height="30" Padding="20,0" Margin="10,0,0,0" Background="{x:Null}" Click="CancelButton_Click" Content="Postpone" />
+            </StackPanel>
+        </DockPanel>
+    </DockPanel>
+</Window>

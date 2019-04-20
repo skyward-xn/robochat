@@ -1,0 +1,177 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:RoboChat" x:Class="RoboChat.RosterView"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        x:Name="RosterViewElement"        
+        Title="{Binding SettingsInstance.Name}" Height="383.266" Width="343.367" Icon="/RoboChat;component/RoboChat32.ico" Closing="Window_Closing" SourceInitialized="ContactsViewElement_SourceInitialized">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Hide}" CommandParameter="{Binding ElementName=RosterViewElement}" Key="Escape"/>
+    </Window.InputBindings>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding Closed}" CommandParameter="{Binding ElementName=RosterViewElement}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <local:BoolToVisibilityConverter x:Key="VisibilityConverter" TrueValue="Visible" FalseValue="Collapsed" />
+        <local:BoolToVisibilityConverter x:Key="InverseVisibilityConverter" TrueValue="Collapsed" FalseValue="Visible" />
+        <local:BoolToStringConverter x:Key="StatusConverter" TrueValue="Online" FalseValue="Offline" />
+        <CollectionViewSource x:Key="ListBoxItemsPlain" Source="{Binding Contacts}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Name"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        <CollectionViewSource x:Key="ListBoxItemsGrouped" Source="{Binding Contacts}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Group"/>
+                <scm:SortDescription PropertyName="Name"/>
+            </CollectionViewSource.SortDescriptions>
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Group"/>
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+        <ControlTemplate x:Key="ContactsItemTemplate" TargetType="{x:Type ListBoxItem}">
+            <Border Padding="5" Background="{TemplateBinding Background}" Visibility="{Binding Visibility}"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                <Border.ContextMenu>
+                    <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                        <MenuItem Header="Add to favorite" Command="{Binding DataContext.ContactFavorite}" />
+                        <Separator />
+                        <MenuItem Header="Remove contact" Command="{Binding DataContext.ContactRemove}" />
+                        <MenuItem Header="Remove contact and clear history" Command="{Binding DataContext.ContactRemoveAndClear}" />
+                    </ContextMenu>
+                </Border.ContextMenu>
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="None" Margin="0,0,10,0" Source="{Binding IsOnlineImage}"/>
+                    <TextBlock Text="{Binding ShortName}" ToolTip="{Binding Tooltip}"/>
+                </StackPanel>
+                <Border.InputBindings>
+                    <MouseBinding Command="{Binding DataContext.DblClick, ElementName=contactsGrouped}" MouseAction="LeftDoubleClick"/>
+                </Border.InputBindings>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="FavoritesItemTemplate" TargetType="{x:Type ListBoxItem}">
+            <Border Padding="5" Background="{TemplateBinding Background}" Visibility="{Binding IsFavorite, Converter={StaticResource VisibilityConverter}}"
+                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                <Border.ContextMenu>
+                    <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                        <MenuItem Header="Remove from favorite" Command="{Binding DataContext.ContactUnFavorite}" />
+                    </ContextMenu>
+                </Border.ContextMenu>
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="None" Margin="0,0,10,0" Source="{Binding IsOnlineImage}"/>
+                    <TextBlock Text="{Binding ShortName}" ToolTip="{Binding Tooltip}"/>
+                </StackPanel>
+                <Border.InputBindings>
+                    <MouseBinding Command="{Binding DataContext.DblClick, ElementName=contactsGrouped}" MouseAction="LeftDoubleClick"/>
+                </Border.InputBindings>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ContactsGroupItemTemplate" TargetType="{x:Type GroupItem}">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Text="{Binding Path=Name}" Padding="5"/>
+                </Expander.Header>
+                <ItemsPresenter>
+                    <ItemsPresenter.Resources>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Template" Value="{Binding Source={StaticResource ContactsItemTemplate}}"/>
+                        </Style>
+                    </ItemsPresenter.Resources>
+                </ItemsPresenter>
+            </Expander>
+        </ControlTemplate>
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File" Padding="10,5">
+                <MenuItem Header="Exit" Command="{Binding Exit}"/>
+            </MenuItem>
+            <MenuItem Header="Settings" Padding="10,5">
+                <MenuItem Header="Customize" Command="">
+                    <MenuItem Header="Show Offline Contacts" IsCheckable="True" IsChecked="{Binding SettingsInstance.ShowOffline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <MenuItem Header="Group Contacts" IsCheckable="True" IsChecked="{Binding SettingsInstance.ShowGroups, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Separator />
+                    <MenuItem Header="Show Smileys" IsCheckable="True" IsChecked="{Binding SettingsInstance.EnableSmileys, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <MenuItem Header="Animate Smileys" IsCheckable="True" IsChecked="{Binding SettingsInstance.EnableAnimation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Separator />
+                    <MenuItem Header="Use Ctrl + Enter to Send" IsCheckable="True" IsChecked="{Binding SettingsInstance.UseCtrlInSendKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <MenuItem Header="Send Offline Messages" IsCheckable="True" IsChecked="{Binding SettingsInstance.SendOfflineMessages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Separator />
+                    <MenuItem Header="Popup System Messages" IsCheckable="True" IsChecked="{Binding SettingsInstance.ShowSystemPopups, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Separator />
+                    <MenuItem Header="Fonts and Colors..." Command="{Binding OpenFonts}" />
+                </MenuItem>
+                <MenuItem Header="User..." Command="{Binding OpenUser}" />
+                <MenuItem Header="Basic Configuration..." Command="{Binding OpenBasicConfiguration}" />
+            </MenuItem>
+            <MenuItem Header="Help" Padding="10,5">
+                <MenuItem Header="Check Updates" Command="{Binding CheckUpdates}" />
+                <MenuItem Header="About RoboChat..." Command="{Binding OpenAbout}" />
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Image Source="{Binding LagImage}" ToolTip="{Binding LagText}" Stretch="None" />
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem Content="{Binding IsOnline, Converter={StaticResource StatusConverter}}" />
+            <Separator/>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="v."/>
+                    <TextBlock Text="{Binding Source={x:Static local:Settings.Version}}"/>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+        <TabControl>
+            <TabItem Header="Contacts" Padding="10,5">
+                <Grid>
+                    <ListBox x:Name="contactsGrouped" ItemsSource="{Binding Source={StaticResource ListBoxItemsGrouped}}" SelectedValue="{Binding SelectedContact}"
+                             Visibility="{Binding SettingsInstance.ShowGroups, Converter={StaticResource VisibilityConverter}}">
+                        <ListBox.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Template" Value="{Binding Source={StaticResource ContactsGroupItemTemplate}}"/>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </ListBox.GroupStyle>
+                    </ListBox>
+                    <ListBox ItemsSource="{Binding Source={StaticResource ListBoxItemsPlain}}" SelectedValue="{Binding SelectedContact}"
+                             Visibility="{Binding SettingsInstance.ShowGroups, Converter={StaticResource InverseVisibilityConverter}}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Template" Value="{Binding Source={StaticResource ContactsItemTemplate}}"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Favorites" Padding="10,5">
+                <ListBox ItemsSource="{Binding Source={StaticResource ListBoxItemsPlain}}" SelectedValue="{Binding SelectedContact}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Template" Value="{Binding Source={StaticResource FavoritesItemTemplate}}"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>
