@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace RoboChat
+namespace RoboChat.Commands
 {
     public class DelegateCommand : ICommand
     {

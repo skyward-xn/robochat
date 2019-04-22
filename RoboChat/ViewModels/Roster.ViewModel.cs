@@ -11,6 +11,8 @@ using RoboChat.Model;
 using RoboChat.Contracts;
 using RoboChat.DataStructures;
 using RoboChat.CustomEventArgs;
+using RoboChat.Commands;
+using RoboChat.Impl;
 
 namespace RoboChat.ViewModels
 {
@@ -142,7 +144,7 @@ namespace RoboChat.ViewModels
 
         public RosterViewModel()
         {
-            _model = new RosterModel();
+            _model = new RosterModel(new HistoryStorage());
             _model.MessageReceived += _model_MessageReceived;
             _model.StatusChanged += _model_StatusChanged;
             _model.StatisticsUpdated += _model_StatisticsUpdated;

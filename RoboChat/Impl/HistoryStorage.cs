@@ -1,51 +1,20 @@
 ﻿using RoboChat.Contracts;
 using RoboChat.Enums;
+using RoboChat.Interfaces;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace RoboChat.Model
+namespace RoboChat.Impl
 {
-    public static class History
+    public class HistoryStorage : IHistoryStorage
     {
         private const string HISTORY_DIRECTORY = "history";
 
         private static object _historyLocker = new object();
 
-        public static bool GetUserPath(string name, out string path)
-        {
-            path = null;
-
-            // Папка истории
-            string tempPath = Path.Combine(Settings.Directory, HISTORY_DIRECTORY);
-            if (!Directory.Exists(tempPath))
-                return false;
-
-            // Папка контакта в истории
-            tempPath = Path.Combine(tempPath, name);
-            if (!Directory.Exists(tempPath))
-                return false;
-
-            path = tempPath;
-            return true;
-        }
-
-        public static string SetUserPath(string name)
-        {
-            // Папка истории
-            string path = Path.Combine(Settings.Directory, HISTORY_DIRECTORY);
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            // Папка контакта в истории
-            path = Path.Combine(path, name);
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            return path;
-        }
-
-        public static string StoreFile(string name, string filepath)
+        public string AddFileByName(string name, string filepath)
         {
             string path = SetUserPath(name);
 
@@ -63,7 +32,7 @@ namespace RoboChat.Model
             return path;
         }
 
-        public static void AddToHistory(string contactNameForHistory, string contactNameForAuthor, Message message)
+        public void Add(string contactNameForHistory, string contactNameForAuthor, Message message)
         {
             lock (_historyLocker)
             {
@@ -91,7 +60,7 @@ namespace RoboChat.Model
             }
         }
 
-        public static Message[] GetFromHistory(string name, DateTime dateTime)
+        public Message[] GetByNameAndDate(string name, DateTime dateTime)
         {
             lock (_historyLocker)
             {
@@ -145,7 +114,7 @@ namespace RoboChat.Model
             }
         }
 
-        public static void ClearHistory(string name)
+        public void ClearByName(string name)
         {
             lock (_historyLocker)
             {
@@ -162,6 +131,48 @@ namespace RoboChat.Model
                     ex.Process(ErrorHandlingLevels.Tray, "Cannot clear history");
                 }
             }
+        }
+
+        public void OpenFolderByName(string name)
+        {
+            string path;
+            if (!GetUserPath(name, out path))
+                throw new Exception("Cannot get full path to user folder");
+
+            Process.Start(new ProcessStartInfo(path));
+        }
+
+        private bool GetUserPath(string name, out string path)
+        {
+            path = null;
+
+            // Папка истории
+            string tempPath = Path.Combine(Settings.Directory, HISTORY_DIRECTORY);
+            if (!Directory.Exists(tempPath))
+                return false;
+
+            // Папка контакта в истории
+            tempPath = Path.Combine(tempPath, name);
+            if (!Directory.Exists(tempPath))
+                return false;
+
+            path = tempPath;
+            return true;
+        }
+
+        private string SetUserPath(string name)
+        {
+            // Папка истории
+            string path = Path.Combine(Settings.Directory, HISTORY_DIRECTORY);
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            // Папка контакта в истории
+            path = Path.Combine(path, name);
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            return path;
         }
     }
 }

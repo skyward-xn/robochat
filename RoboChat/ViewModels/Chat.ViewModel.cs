@@ -15,6 +15,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using RoboChat.Enums;
 using RoboChat.Contracts;
+using RoboChat.Commands;
 
 namespace RoboChat.ViewModels
 {

@@ -1,6 +1,7 @@
 ﻿using RoboChat.Contracts;
 using RoboChat.CustomEventArgs;
 using RoboChat.Enums;
+using RoboChat.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,12 +32,22 @@ namespace RoboChat.Model
 
         private ConnectionSend _connectionSend;
         private ConnectionReceive _connectionReceive;
+        private ObservableCollection<Contact> _contacts;
+        private IHistoryStorage historyStorage;
+
+        #endregion
+
+        #region Constructor
+
+        public RosterModel(IHistoryStorage historyStorage)
+        {
+            this.historyStorage = historyStorage;
+        }
 
         #endregion
 
         #region Properties
 
-        private ObservableCollection<Contact> _contacts;
         public ObservableCollection<Contact> Contacts
         {
             get
@@ -148,7 +159,7 @@ namespace RoboChat.Model
             var contactForHistory = Contacts.FirstOrDefault(p => p.ID == resultMessage.Address);
             var contactForAuthor = Contacts.FirstOrDefault(p => p.ID == resultMessage.From);
             if (contactForHistory != null && contactForAuthor != null)
-                History.AddToHistory(contactForHistory.Name, contactForAuthor.Name, resultMessage);
+                historyStorage.Add(contactForHistory.Name, contactForAuthor.Name, resultMessage);
 
             // Provide a copy for external use
             return resultMessage;
@@ -237,12 +248,12 @@ namespace RoboChat.Model
         /// <returns>Array of messages for a chat with a certain user on a certain date</returns>
         public Message[] GetFromHistory(string address, DateTime dateTime)
         {
-            return History.GetFromHistory(address, dateTime);
+            return historyStorage.GetByNameAndDate(address, dateTime);
         }
 
         public void ClearHistory(string address)
         {
-            History.ClearHistory(address);
+            historyStorage.ClearByName(address);
         }
 
         /// <summary>
@@ -253,11 +264,7 @@ namespace RoboChat.Model
         {
             try
             {
-                string path;
-                if (!History.GetUserPath(name, out path))
-                    throw new Exception("Cannot get full path to user folder");
-
-                Process.Start(new ProcessStartInfo(path));
+                historyStorage.OpenFolderByName(name);
             }
             catch (Exception ex)
             {
@@ -556,7 +563,7 @@ namespace RoboChat.Model
             var contactForHistory = Contacts.FirstOrDefault(p => p.ID == message.Address);
             var contactForAuthor = Contacts.FirstOrDefault(p => p.ID == message.From);
             if (contactForHistory != null && contactForAuthor != null)
-                History.AddToHistory(contactForHistory.Name, contactForAuthor.Name, message);
+                historyStorage.Add(contactForHistory.Name, contactForAuthor.Name, message);
         }
 
         /// <summary>
@@ -602,7 +609,7 @@ namespace RoboChat.Model
                 if (message.FileOffset + bytes.Length == message.FileLength)
                 {
                     // Куда в итоге сохранен файл
-                    string movePath = History.StoreFile(contact.Name, path);
+                    string movePath = historyStorage.AddFileByName(contact.Name, path);
 
                     // Путь до файла относительно папки приложения
                     string relativePath = movePath.Replace(Settings.Directory, "");

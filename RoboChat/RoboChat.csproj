@@ -152,7 +152,7 @@
     <Compile Include="Converters\BoolToModifierKeysConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\GenericBoolToValueConverter.cs" />
-    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="CustomEventArgs\StatisticsEventArgs.cs" />
     <Compile Include="CustomEventArgs\ContactsUpdatedEventArgs.cs" />
@@ -163,7 +163,8 @@
     <Compile Include="Enums\Directions.cs" />
     <Compile Include="Enums\ErrorHandlingLevels.cs" />
     <Compile Include="CustomEventArgs\MessageEventArgs.cs" />
-    <Compile Include="Static\History.cs" />
+    <Compile Include="Impl\HistoryStorage.cs" />
+    <Compile Include="Interfaces\IHistoryStorage.cs" />
     <Compile Include="Interfaces\IRoster.Model.cs" />
     <Compile Include="Models\Roster.Model.cs" />
     <Compile Include="Models\ConnectionThread.cs" />
